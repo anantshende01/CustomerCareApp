@@ -1,0 +1,68 @@
+package com.ibm.customerCare.dao;
+
+import java.util.List;
+
+import com.ibm.customerCare.model.Department;
+import com.ibm.customerCare.model.Operator;
+
+public class AdminDaoImpl implements AdminDao{
+	
+	DepartmentDao deptDao;
+
+	@Override
+	public String createDepartment(Department d) {
+		
+		return null;
+	}
+
+	@Override
+	public String deleteDepartment(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Department updateDepartment(Department d) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Department readDepartmentById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String createOpertaor(Operator o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteOperator(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Operator updateOperator(Operator o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Operator readOperatorById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Operator> readAllOperators() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+}

@@ -1,0 +1,21 @@
+package com.ibm.customerCare.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.ibm.customerCare.model.Department;
+import com.ibm.customerCare.model.Operator;
+
+public interface AdminService {
+	
+	public String addDepartment(Department d);
+	public String removeDepartment(int id);
+	public String modifyDepartment(Department d);
+	public Department findDepartmentById(int id);
+	public String addOpertaor(Operator o);
+	public String removeOperator(int id);
+	public String modifyOperator(Operator o);
+	public Operator findOperatorById(int id);
+	public List<Operator> findAllOperators();
+}

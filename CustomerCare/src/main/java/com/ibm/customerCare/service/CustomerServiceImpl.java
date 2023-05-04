@@ -6,12 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ibm.customerCare.dao.CustomerDao;
+import com.ibm.customerCare.dao.LoginDao;
 import com.ibm.customerCare.model.Customer;
 import com.ibm.customerCare.model.Issue;
 import com.ibm.customerCare.model.Login;
 import com.ibm.customerCare.model.UserType;
-import com.ibm.customerCare.repo.CustomerDao;
-import com.ibm.customerCare.repo.LoginDao;
 
 import jakarta.transaction.Transactional;
 

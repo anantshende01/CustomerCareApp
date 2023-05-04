@@ -1,0 +1,20 @@
+package com.ibm.customerCare.dao;
+
+import com.ibm.customerCare.model.Department;
+import com.ibm.customerCare.model.Login;
+import com.ibm.customerCare.model.Operator;
+import java.util.*;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AdminDao extends JpaRepository<Department,Integer>{
+	public int createDepartment(Department d);
+	public int deleteDepartment(int id);
+	public Department updateDepartment(Department d);
+	public Department readDepartmentById(int id);
+	public int createOpertaor(Operator o);
+	public int deleteOperator(int id);
+	public Operator updateOperator(Operator o);
+	public Operator readOperatorById(int id);
+	public List<Operator> readAllOperators();
+}

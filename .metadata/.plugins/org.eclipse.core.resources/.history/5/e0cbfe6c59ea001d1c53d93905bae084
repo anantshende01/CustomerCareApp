@@ -1,0 +1,77 @@
+package com.ibm.customerCare.dao;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.ibm.customerCare.model.Department;
+import com.ibm.customerCare.model.Operator;
+
+public class AdminDaoImpl implements AdminDao{
+	
+	@Autowired
+	DepartmentDao deptDao;
+
+	@Override
+	public String createDepartment(Department d) {
+		
+		boolean exists = deptDao.existsById(d.getDepartmentId());
+		if(exists) return "Department already exists";
+		
+		deptDao.save(d);
+		return "Department Created";
+	}
+
+	@Override
+	public String deleteDepartment(int id) {
+		boolean exists = deptDao.existsById(id);
+		if(!exists) return "Department doesn't exists";
+		
+		return "Department Deleted ";
+	}
+
+	@Override
+	public Department updateDepartment(Department d) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Department readDepartmentById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String createOpertaor(Operator o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteOperator(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Operator updateOperator(Operator o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Operator readOperatorById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Operator> readAllOperators() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+}

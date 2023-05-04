@@ -13,7 +13,7 @@ import com.ibm.customerCare.model.Login;
 import com.ibm.customerCare.service.CustomerService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/customer")
 public class CustomerController {
 	
 	@Autowired

@@ -1,0 +1,11 @@
+package com.ibm.customerCare.service;
+
+import com.ibm.customerCare.model.Issue;
+import com.ibm.customerCare.model.Login;
+
+public interface OperatorService {
+	
+	public String login(Login login);
+	public String addCustomerIssue(Issue issue);
+
+}

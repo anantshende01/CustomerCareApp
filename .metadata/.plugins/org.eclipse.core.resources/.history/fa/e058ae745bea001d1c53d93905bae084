@@ -1,0 +1,67 @@
+package com.ibm.customerCare.service;
+
+import java.util.List;
+
+import com.ibm.customerCare.dao.AdminDao;
+import com.ibm.customerCare.model.Department;
+import com.ibm.customerCare.model.Operator;
+
+public class AdminServiceImpl implements AdminService{
+	
+	AdminDao adminDao;
+
+	@Override
+	public String addDepartment(Department d) {
+		adminDao.createDepartment(d);
+		return "Department Created";
+	}
+
+	@Override
+	public String removeDepartment(int id) {
+		adminDao.deleteDepartment(id);
+		return "Department Removed";
+	}
+
+	@Override
+	public String modifyDepartment(Department d) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Department findDepartmentById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String addOpertaor(Operator o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String removeOperator(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String modifyOperator(Operator o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Operator findOperatorById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Operator> findAllOperators() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
