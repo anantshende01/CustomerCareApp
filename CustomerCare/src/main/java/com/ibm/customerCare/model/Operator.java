@@ -13,6 +13,9 @@ public class Operator {
 	@Column(name = "id")
 	private int operatorId;
 	
+	@Column(name = "password")
+	private String operatorpass;
+
 	@Column(name = "firstname")
 	private String operatorFirstName;
 	
@@ -37,6 +40,15 @@ public class Operator {
 	public void setOperatorId(int operatorId) {
 		this.operatorId = operatorId;
 	}
+	
+	public String getOperatorpass() {
+		return operatorpass;
+	}
+
+	public void setOperatorpass(String operatorpass) {
+		this.operatorpass = operatorpass;
+	}
+
 
 	public String getOperatorFirstName() {
 		return operatorFirstName;
@@ -79,7 +91,10 @@ public class Operator {
 	}
 	
 
-	
+	public Operator(String operatorpass) {
+		super();
+		this.operatorpass = operatorpass;
+	}
 	
 	
 	

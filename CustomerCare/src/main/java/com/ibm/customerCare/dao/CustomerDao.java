@@ -8,5 +8,5 @@ import com.ibm.customerCare.model.Customer;
 
 @Repository
 public interface CustomerDao extends JpaRepository<Customer, Integer>{
-
+	Customer findByEmail(String email);
 }

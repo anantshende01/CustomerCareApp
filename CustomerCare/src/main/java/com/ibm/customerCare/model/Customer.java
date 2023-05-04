@@ -85,6 +85,8 @@ public class Customer {
 	public void setCustomerPassword(String customerPassword) {
 		this.customerPassword = customerPassword;
 	}
+
+
 	
 	
 	
