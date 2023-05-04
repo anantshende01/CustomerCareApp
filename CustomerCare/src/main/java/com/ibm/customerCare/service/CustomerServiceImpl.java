@@ -3,9 +3,13 @@ package com.ibm.customerCare.service;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ibm.customerCare.exceptions.CustomerNotFoundException;
+import com.ibm.customerCare.exceptions.DuplicateCustomerException;
+import com.ibm.customerCare.exceptions.InvalidCredintialException;
 import com.ibm.customerCare.model.Customer;
 import com.ibm.customerCare.model.Issue;
 import com.ibm.customerCare.model.Login;
@@ -30,10 +34,12 @@ public class CustomerServiceImpl implements CustomerService{
 	public String login(Login login) {
 		boolean exists=loginDao.existsById(login.getUserName());
 		if(!exists) {
-			return "Customer Not Found. Plzzz Register";
+			throw new CustomerNotFoundException("Customer not found with Id=" + login.getUserName());
 		}
+		
 		if(!customerDao.findById(login.getUserName()).get().getCustomerPassword().equals(login.getPassword())) {
-			return "Invalid Id or Password";
+//			return "Invalid Id or Password";
+			throw new InvalidCredintialException("Invalid Id or Passoword");
 		}
 		
 		if(loginDao.findById(login.getUserName()).get().isActive()==true) {
@@ -46,13 +52,14 @@ public class CustomerServiceImpl implements CustomerService{
 		
 		return "Login successfully";
 	}
+	
 
 	@Override
 	public String registerCustomer(Customer customer) {
 		
 		boolean exists=customerDao.existsById(customer.getCustomerId());
 		if(exists) {
-			return "Customer Already have Same Id Choose Another Id";
+			throw new DuplicateCustomerException("Customer already have Id="+customer.getCustomerId());
 		}
 		customerDao.save(customer);
 		
@@ -88,7 +95,7 @@ public class CustomerServiceImpl implements CustomerService{
 	public String changePassword(Login login) {
 		boolean exists=customerDao.existsById(login.getUserName());
 		if(!exists) {
-			return "Customer Not Found";
+			throw new CustomerNotFoundException("Customer not found with Id=" + login.getUserName());
 		}
 		
 		Login login2=loginDao.findById(login.getUserName()).get();
@@ -114,7 +121,7 @@ public class CustomerServiceImpl implements CustomerService{
 	public String logout(Login login) {
 		boolean exists=loginDao.existsById(login.getUserName());
 		if(!exists) {
-			return "Customer Not Found. Plzzz Register";
+			throw new CustomerNotFoundException("Customer not found. Please Register with Id="+login.getUserName());
 		}
 		
 		Login login2=loginDao.findById(login.getUserName()).get();
@@ -129,7 +136,7 @@ public class CustomerServiceImpl implements CustomerService{
 		
 		boolean exists=loginDao.existsById(customerId);
 		if(!exists) {
-			return "Customer Not Found. Plzzz Register";
+			throw new CustomerNotFoundException("Customer not found with Id=" + customerId);
 		}
 		
 		Customer customer=customerDao.findById(customerId).get();
