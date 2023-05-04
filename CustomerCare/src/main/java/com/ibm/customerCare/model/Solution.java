@@ -21,6 +21,7 @@ public class Solution {
 	@Column(name = "date")
 	private Date solutionDate;
 	
+	
 //	private Issue issue;
 //	private Operator specilist;
 

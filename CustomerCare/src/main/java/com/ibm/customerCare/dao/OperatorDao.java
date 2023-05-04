@@ -8,5 +8,5 @@ import com.ibm.customerCare.model.Operator;
 
 @Repository
 public interface OperatorDao extends JpaRepository<Operator, Integer>{
-
+	
 }

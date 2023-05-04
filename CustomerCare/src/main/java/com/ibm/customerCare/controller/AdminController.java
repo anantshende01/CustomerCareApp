@@ -28,7 +28,7 @@ public class AdminController {
 		return adminService.addDepartment(d);
 	}
 	
-	@DeleteMapping("/addDepartment/{id}")
+	@DeleteMapping("/deleteDepartment/{id}")
 	public String removeDepartment(@PathVariable int id) {
 		return adminService.removeDepartment(id);
 	}
@@ -48,12 +48,12 @@ public class AdminController {
 		return adminService.addOpertaor(o);
 	}
 	
-	@DeleteMapping("/addDepartment/{id}")
+	@DeleteMapping("/removeOperator/{id}")
 	public String removeoperator(@PathVariable int id) {
 		return adminService.removeOperator(id);
 	}
 	
-	@PutMapping("/modifyDepartment")
+	@PutMapping("/modifyOperator")
 	public String modifyOperator(@RequestBody Operator o) {
 		return adminService.modifyOperator(o);
 	}
