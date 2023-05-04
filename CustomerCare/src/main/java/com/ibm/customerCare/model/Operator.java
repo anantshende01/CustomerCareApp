@@ -28,11 +28,7 @@ public class Operator {
 	@Column(name = "city")
 	private String operatorCity;
 	
-	private Department department;
-	
-	public Operator() {
-		// TODO Auto-generated constructor stub
-	}
+//	private Department department;
 
 	public int getOperatorId() {
 		return operatorId;
@@ -81,33 +77,10 @@ public class Operator {
 	public void setOperatorCity(String operatorCity) {
 		this.operatorCity = operatorCity;
 	}
+	
 
-	public Department getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(Department department) {
-		this.department = department;
-	}
-
-	public Operator(int operatorId, String operatorFirstName, String operatorLastName, String operatorEmail,
-			String operatorMobile, String operatorCity, Department department) {
-		super();
-		this.operatorId = operatorId;
-		this.operatorFirstName = operatorFirstName;
-		this.operatorLastName = operatorLastName;
-		this.operatorEmail = operatorEmail;
-		this.operatorMobile = operatorMobile;
-		this.operatorCity = operatorCity;
-		this.department = department;
-	}
-
-	@Override
-	public String toString() {
-		return "Operator [operatorId=" + operatorId + ", operatorFirstName=" + operatorFirstName + ", operatorLastName="
-				+ operatorLastName + ", operatorEmail=" + operatorEmail + ", operatorMobile=" + operatorMobile
-				+ ", operatorCity=" + operatorCity + ", department=" + department + "]";
-	}
+	
+	
 	
 	
 	

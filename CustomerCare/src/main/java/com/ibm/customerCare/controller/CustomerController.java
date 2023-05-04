@@ -1,5 +1,47 @@
 package com.ibm.customerCare.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ibm.customerCare.model.Customer;
+import com.ibm.customerCare.model.Login;
+import com.ibm.customerCare.service.CustomerService;
+
+@RestController
+@RequestMapping("/api")
 public class CustomerController {
+	
+	@Autowired
+	CustomerService customerService;
+	
+	@PostMapping("/add")
+	public String add(@RequestBody Customer customer) {
+		return customerService.registerCustomer(customer);
+	}
+	
+	@PutMapping("/login")
+	public String login(@RequestBody Login login) {
+		return customerService.login(login);
+	}
+	
+	@PutMapping("/change")
+	public String changePassword(@RequestBody Login login) {
+		return customerService.changePassword(login);
+	}
+	
+	@PutMapping("/logout")
+	public String logout(@RequestBody Login login) {
+		return customerService.logout(login);
+	}
+	
+	@PostMapping("/forget/{id}")
+	public String forget(@PathVariable(value = "id") int customerId,@RequestBody String newPassword) {
+		return customerService.forgotPassword(customerId, newPassword);
+	}
 
 }

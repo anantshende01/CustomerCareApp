@@ -1,0 +1,18 @@
+package com.ibm.customerCare.service;
+
+import java.util.List;
+
+import com.ibm.customerCare.model.Department;
+import com.ibm.customerCare.model.Operator;
+
+public interface AdminService {
+	public boolean addDepartment(Department department);
+	public boolean removeDepartment(int departmentId);
+	public Department modifyDepartment(Department department);
+	public Department findDepartmentById(int departmentId);
+	public boolean addOperator(Operator operator);
+	public boolean removeOperator(int operatorId);
+	public Operator modiOperator(Operator operator);
+	public Operator findOperatorById(int operatorId);
+	public List<Operator> findAllOperators();
+}

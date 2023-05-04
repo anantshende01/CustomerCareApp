@@ -27,9 +27,8 @@ public class Customer {
 	@Column(name = "city")
 	private String customerCity;
 	
-	public Customer() {
-		// TODO Auto-generated constructor stub
-	}
+	@Column(name = "loginpassword")
+	private String customerPassword;
 
 	public int getCustomerId() {
 		return customerId;
@@ -79,23 +78,15 @@ public class Customer {
 		this.customerCity = customerCity;
 	}
 
-	public Customer(int customerId, String customerFirstName, String customerLastName, String customerEmail,
-			String customerMobile, String customerCity) {
-		super();
-		this.customerId = customerId;
-		this.customerFirstName = customerFirstName;
-		this.customerLastName = customerLastName;
-		this.customerEmail = customerEmail;
-		this.customerMobile = customerMobile;
-		this.customerCity = customerCity;
+	public String getCustomerPassword() {
+		return customerPassword;
 	}
 
-	@Override
-	public String toString() {
-		return "Customer [customerId=" + customerId + ", customerFirstName=" + customerFirstName + ", customerLastName="
-				+ customerLastName + ", customerEmail=" + customerEmail + ", customerMobile=" + customerMobile
-				+ ", customerCity=" + customerCity + "]";
+	public void setCustomerPassword(String customerPassword) {
+		this.customerPassword = customerPassword;
 	}
+	
+	
 	
 	
 	
