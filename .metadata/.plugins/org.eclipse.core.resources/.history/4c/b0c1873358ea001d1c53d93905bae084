@@ -1,0 +1,9 @@
+package com.ibm.customerCare.dao;
+
+import org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtension;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class DepartmentDao extends JpaRepository<Department,Integer>{
+
+}

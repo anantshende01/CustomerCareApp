@@ -1,0 +1,59 @@
+package com.ibm.customerCare.service;
+
+import java.util.List;
+
+import com.ibm.customerCare.dao.AdminDao;
+import com.ibm.customerCare.model.Department;
+import com.ibm.customerCare.model.Operator;
+
+public class AdminServiceImpl implements AdminService{
+	
+	AdminDao adminDao;
+
+	@Override
+	public String addDepartment(Department d) {
+		return adminDao.createDepartment(d);
+	}
+
+	@Override
+	public String removeDepartment(int id) {
+		return adminDao.deleteDepartment(id);
+	}
+
+	@Override
+	public String modifyDepartment(Department d) {
+		return adminDao.updateDepartment(d);
+	}
+
+	@Override
+	public Department findDepartmentById(int id) {
+		return adminDao.readDepartmentById(id);
+	}
+
+	@Override
+	public String addOpertaor(Operator o) {
+		return adminDao.createOpertaor(o);
+	}
+
+	@Override
+	public String removeOperator(int id) {
+		return adminDao.deleteOperator(id);
+	}
+
+	@Override
+	public String modifyOperator(Operator o) {
+		return adminDao.updateOperator(o);
+	}
+
+	@Override
+	public Operator findOperatorById(int id) {
+		return adminDao.readOperatorById(id);
+	}
+
+	@Override
+	public List<Operator> findAllOperators() {
+		List<Operator> operators = adminDao.readAllOperators();
+		return operators;
+	}
+
+}

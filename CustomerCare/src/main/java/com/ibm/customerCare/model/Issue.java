@@ -13,6 +13,9 @@ public class Issue {
 	@Column(name = "id")
 	private int issueId;
 	
+	@Column(name = "Customer_id")
+	private int customerId;
+	
 	@Column(name = "issuetype")
 	private String issueType;
 	

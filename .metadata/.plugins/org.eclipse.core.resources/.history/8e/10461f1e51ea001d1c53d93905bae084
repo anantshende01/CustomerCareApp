@@ -1,0 +1,100 @@
+package com.ibm.customerCare.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.cap.entities.Employee;
+
+import com.ibm.customerCare.model.Department;
+import com.ibm.customerCare.model.Operator;
+
+import jakarta.persistence.TypedQuery;
+
+public class AdminDaoImpl implements AdminDao{
+	@PersistenceContext
+    private EntityManager em;
+	@Override
+	public int createDepartment(Department d) {
+		Department u= em.find(Department.class,id);
+	      return u;
+		
+	}
+
+	@Override
+	public int deleteDepartment(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Department updateDepartment(Department d) {
+		Department user=new Department();
+        user.setEmpName(departmentName);
+        user=em.merge(user);
+        return user;
+	}
+
+	@Override
+	public Department readDepartmentById(int id) {
+		Department u= em.find(Department.class,id);
+	      return u;
+	}
+
+	@Override
+	public int createOpertaor(Operator o) {
+		o=em.merge(o);
+        return o;
+	}
+
+	@Override
+	public int deleteOperator(int id) {
+		TypedQuery<Operator> operator= em.createQuery("select e from Operator e where id="+id,Operator.class);
+		Operator operators=operator.getSingleResult();
+		em.remove(operators);
+		return id;
+	}
+
+	@Override
+	public Operator updateOperator(Operator o) {
+		Operator user=new Operator();
+		
+        user=em.merge(user);
+        return user;
+	}
+
+	@Override
+	public Operator readOperatorById(int id) {
+		Operator u= em.find(Operator.class,id);
+	      return u;
+	}
+
+	@Override
+	public List<Operator> readAllOperators() {
+		TypedQuery<Operator> operators=em.createQuery("select e from Operator e",Operator.class);
+		List<Operator> listOfoperator=operators.getResultList();
+		return listOfoperator;
+	}
+	
+}
+
+
+
+package com.ibm.customerCare.dao;
+
+import com.ibm.customerCare.model.Department;
+import com.ibm.customerCare.model.Operator;
+import java.util.*;
+
+public interface AdminDao {
+	public int createDepartment(Department d);
+	public int deleteDepartment(int id);
+	public Department updateDepartment(Department d);
+	public Department readDepartmentById(int id);
+	public int createOpertaor(Operator o);
+	public int deleteOperator(int id);
+	public Operator updateOperator(Operator o);
+	public Operator readOperatorById(int id);
+	public List<Operator> readAllOperators();
+}

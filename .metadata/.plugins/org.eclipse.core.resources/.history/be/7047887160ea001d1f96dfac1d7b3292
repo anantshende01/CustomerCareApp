@@ -1,0 +1,83 @@
+package com.ibm.customerCare.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ibm.customerCare.dao.AdminDao;
+import com.ibm.customerCare.dao.DepartmentDao;
+import com.ibm.customerCare.model.Department;
+import com.ibm.customerCare.model.Operator;
+
+import jakarta.transaction.Transactional;
+
+@Service
+@Transactional
+public class AdminServiceImpl implements AdminService{
+	
+	AdminDao adminDao;
+	@Autowired
+	DepartmentDao deptDao;
+
+	@Override
+	public String addDepartment(Department d) {
+		boolean exists = deptDao.existsById(d.getDepartmentId());
+		if(exists) {
+			return "Department already exists";
+		}
+		
+		deptDao.save(d);
+		return "Department Created";
+	}
+
+	@Override
+	public String removeDepartment(int id) {
+		boolean exists = deptDao.existsById(id);
+		if(!exists) return "Department doesn't exists";
+		
+		deptDao.deleteById(id);
+		
+		return "Department Deleted ";
+	}
+
+	@Override
+	public String modifyDepartment(Department d) {
+		boolean exists = deptDao.existsById(d.getDepartmentId());
+		if(!exists) return "Department doesnt exist";
+		
+		deptDao.save(d);
+		return "Department Updated";
+	}
+
+	@Override
+	public Department findDepartmentById(int id) {
+		return adminDao.readDepartmentById(id);
+	}
+
+	@Override
+	public String addOpertaor(Operator o) {
+		return adminDao.createOpertaor(o);
+	}
+
+	@Override
+	public String removeOperator(int id) {
+		return adminDao.deleteOperator(id);
+	}
+
+	@Override
+	public String modifyOperator(Operator o) {
+		return adminDao.updateOperator(o);
+	}
+
+	@Override
+	public Operator findOperatorById(int id) {
+		return adminDao.readOperatorById(id);
+	}
+
+	@Override
+	public List<Operator> findAllOperators() {
+		return adminDao.readAllOperators();
+	}
+
+}
