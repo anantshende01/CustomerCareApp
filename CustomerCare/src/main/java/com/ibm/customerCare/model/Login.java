@@ -2,6 +2,8 @@ package com.ibm.customerCare.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -15,15 +17,12 @@ public class Login {
 	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "usertype")
+	@Enumerated(EnumType.STRING)
 	private UserType type;
 	
 	@Column(name = "isactive")
 	private boolean isActive;
-	
-	public Login() {
-		// TODO Auto-generated constructor stub
-	}
+
 
 	public int getUserName() {
 		return userName;
@@ -55,20 +54,6 @@ public class Login {
 
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
-	}
-
-	public Login(int userName, String password, UserType type, boolean isActive) {
-		super();
-		this.userName = userName;
-		this.password = password;
-		this.type = type;
-		this.isActive = isActive;
-	}
-
-	@Override
-	public String toString() {
-		return "Login [userName=" + userName + ", password=" + password + ", type=" + type + ", isActive=" + isActive
-				+ "]";
 	}
 	
 	

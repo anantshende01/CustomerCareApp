@@ -6,31 +6,27 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "issue")
+@Table(name = "issue_info")
 public class Issue {
 	
 	@Id
 	@Column(name = "id")
-	private String issueId;
+	private int issueId;
 	
-	@Column(name = "type")
+	@Column(name = "issuetype")
 	private String issueType;
 	
-	@Column(name = "description")
+	@Column(name = "issuedescription")
 	private String issueDescription;
 	
-	@Column(name = "status")
+	@Column(name = "issuestatus")
 	private String issueStatus;
-	
-	public Issue() {
-		// TODO Auto-generated constructor stub
-	}
 
-	public String getIssueId() {
+	public int getIssueId() {
 		return issueId;
 	}
 
-	public void setIssueId(String issueId) {
+	public void setIssueId(int issueId) {
 		this.issueId = issueId;
 	}
 
@@ -57,20 +53,7 @@ public class Issue {
 	public void setIssueStatus(String issueStatus) {
 		this.issueStatus = issueStatus;
 	}
-
-	public Issue(String issueId, String issueType, String issueDescription, String issueStatus) {
-		super();
-		this.issueId = issueId;
-		this.issueType = issueType;
-		this.issueDescription = issueDescription;
-		this.issueStatus = issueStatus;
-	}
-
-	@Override
-	public String toString() {
-		return "Issue [issueId=" + issueId + ", issueType=" + issueType + ", issueDescription=" + issueDescription
-				+ ", issueStatus=" + issueStatus + "]";
-	}
+	
 	
 	
 }

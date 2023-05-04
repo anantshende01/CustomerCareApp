@@ -21,12 +21,9 @@ public class Solution {
 	@Column(name = "date")
 	private Date solutionDate;
 	
-	private Issue issue;
-	private Operator specilist;
-	
-	public Solution() {
-		// TODO Auto-generated constructor stub
-	}
+//	private Issue issue;
+//	private Operator specilist;
+
 
 	public int getSolutionId() {
 		return solutionId;
@@ -52,36 +49,6 @@ public class Solution {
 		this.solutionDate = solutionDate;
 	}
 
-	public Issue getIssue() {
-		return issue;
-	}
-
-	public void setIssue(Issue issue) {
-		this.issue = issue;
-	}
-
-	public Operator getSpecilist() {
-		return specilist;
-	}
-
-	public void setSpecilist(Operator specilist) {
-		this.specilist = specilist;
-	}
-
-	public Solution(int solutionId, String solutionDescription, Date solutionDate, Issue issue, Operator specilist) {
-		super();
-		this.solutionId = solutionId;
-		this.solutionDescription = solutionDescription;
-		this.solutionDate = solutionDate;
-		this.issue = issue;
-		this.specilist = specilist;
-	}
-
-	@Override
-	public String toString() {
-		return "Solution [solutionId=" + solutionId + ", solutionDescription=" + solutionDescription + ", solutionDate="
-				+ solutionDate + ", issue=" + issue + ", specilist=" + specilist + "]";
-	}
 	
 	
 }

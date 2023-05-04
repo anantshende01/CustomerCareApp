@@ -1,0 +1,21 @@
+package com.ibm.customerCare.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ibm.customerCare.model.Customer;
+import com.ibm.customerCare.model.Issue;
+import com.ibm.customerCare.model.Login;
+import com.ibm.customerCare.repo.CustomerDao;
+
+import jakarta.transaction.Transactional;
+
+@Service
+@Transactional
+public class CustomerServiceImpl implements CustomerService{
+
+
+}

@@ -1,0 +1,20 @@
+package com.ibm.customerCare.service;
+
+import java.util.List;
+
+import com.ibm.customerCare.model.Customer;
+import com.ibm.customerCare.model.Issue;
+import com.ibm.customerCare.model.Login;
+
+public interface OperatorService {
+	public String login(Login login);
+	public Issue addCustomerIssue(Issue issue);
+	public String sendIntimationEmailToCustomer(int customerId,int issueId);
+	public Issue modifyCustomerIssue(Issue issue);
+	public String sendModificationEmailToCustomer(int customerId, int issueId);
+	public Issue closeCustomerIssue(Issue issue);
+	public Customer findCustomerById(int customerId);
+	public List<Customer> findCustomerByName(String customerName);
+	public Customer findCustomerByEmail(String customerEmail);
+	public boolean lockCustomer(int customerId);
+}

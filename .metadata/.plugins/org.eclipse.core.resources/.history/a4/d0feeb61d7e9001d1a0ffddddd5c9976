@@ -1,0 +1,66 @@
+package com.ibm.customerCare.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ibm.customerCare.model.Customer;
+import com.ibm.customerCare.model.Issue;
+import com.ibm.customerCare.model.Login;
+import com.ibm.customerCare.service.CustomerService;
+
+@RestController
+@RequestMapping("/customer")
+public class CustomerController {
+	@Autowired
+	CustomerService customerService;
+	
+	@PostMapping("/register")
+	public String register(@RequestBody Customer customer) {
+		return customerService.registerCustomer(customer);
+	}
+	
+	@PutMapping("/login")
+	public String login(@RequestBody Login login) {
+		return customerService.login(login);
+	}
+	
+	@GetMapping("/issue/{id}")
+	public Issue viewIssueById(@PathVariable(value = "id") int issueId) {
+		return customerService.viewIssueById(issueId);
+	}
+	
+	@PutMapping("issue/{id}/reopen")
+	public Issue reopenIssue(@PathVariable(value = "id") String issueId) {
+		return customerService.reopenIssue(issueId);
+	}
+	
+	@GetMapping("/issues")
+	public List<Issue> viewAllIssues(){
+		return customerService.viewAllIssues();
+	}
+	
+	@PutMapping("/changePassword")
+	public String changePassword(@RequestBody Login login) {
+		return customerService.changePassword(login);
+	}
+	
+	@GetMapping("/forgotPassword/{id}")
+	public String forgotPassword(@PathVariable(value = "id") int customerId) {
+		return customerService.forgotPassword(customerId);
+	}
+	
+	@GetMapping("emailPassword/{id}")
+	public Customer emailPassword(@PathVariable(value = "id") int customerId) {
+		return customerService.emailPassword(customerId);
+	}
+	
+	
+}

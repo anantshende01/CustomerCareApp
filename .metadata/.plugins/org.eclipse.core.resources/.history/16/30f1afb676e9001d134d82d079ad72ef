@@ -1,0 +1,85 @@
+package com.ibm.customerCare.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ibm.customerCare.model.Customer;
+import com.ibm.customerCare.model.Issue;
+import com.ibm.customerCare.model.Login;
+import com.ibm.customerCare.model.UserType;
+import com.ibm.customerCare.repo.CustomerDao;
+import com.ibm.customerCare.repo.LoginDao;
+
+import jakarta.transaction.Transactional;
+
+@Service
+@Transactional
+public class CustomerServiceImpl implements CustomerService{
+	
+	@Autowired
+	CustomerDao customerDao;
+	
+	@Autowired
+	LoginDao loginDao;
+	
+	@Override
+	public String login(Login login) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String registerCustomer(Customer customer) {
+		customerDao.save(customer);
+		
+		Login login=new Login();
+		login.setUserName(customer.getCustomerId());
+		login.setPassword(customer.getCustomerPassword());
+		login.setType(UserType.CUSTOMER);
+		login.setActive(false);
+		loginDao.save(login);
+		
+		return "Customer Added";
+	}
+
+	@Override
+	public Issue viewIssueById(int issueId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Issue reopenIssue(int issueId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Issue> viewAllIssues() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String changePassword(Login login) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String forgotPassword(int customerId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Customer emailPassword(int customerId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+}

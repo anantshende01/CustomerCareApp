@@ -1,0 +1,23 @@
+package com.ibm.customerCare.repo;
+
+import java.util.List;
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.ibm.customerCare.model.Customer;
+import com.ibm.customerCare.model.Issue;
+import com.ibm.customerCare.model.Login;
+
+@Repository
+public interface CustomerDao extends JpaRepository<Customer, Integer>{
+	public String login(Login login);
+	public String createCustomer(Customer customer);
+	public Issue readIssueById(int issueId);
+	public Issue reopenIssue(int issueId);
+	public List<Issue> readAllIssues();
+	public String changePassword(Login login);
+	public String forgotPassword(int customerId);
+	
+}

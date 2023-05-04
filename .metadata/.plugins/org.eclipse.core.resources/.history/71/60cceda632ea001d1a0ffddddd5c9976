@@ -1,0 +1,18 @@
+package com.ibm.customerCare.repo;
+
+import java.util.List;
+
+import com.ibm.customerCare.model.Department;
+import com.ibm.customerCare.model.Operator;
+
+public interface AdminDao {
+	public int createDepartment(Department department);
+	public int deleteDepartment(int departmentId);
+	public Department updateDepartment(Department department);
+	public Department readDepartmentById(int departmentId);
+	public int  createOperator(Operator operator);
+	public int deleteOperator(int operatorId);
+	public Operator updateOperator(Operator operator);
+	public Operator readOperatorById(int operatorId);
+	public List<Operator> readAllOperators();
+}

@@ -1,0 +1,118 @@
+package com.ibm.customerCare.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ibm.customerCare.model.Customer;
+import com.ibm.customerCare.model.Issue;
+import com.ibm.customerCare.model.Login;
+import com.ibm.customerCare.model.UserType;
+import com.ibm.customerCare.repo.CustomerDao;
+import com.ibm.customerCare.repo.IssueDao;
+import com.ibm.customerCare.repo.LoginDao;
+
+import jakarta.transaction.Transactional;
+
+@Service
+@Transactional
+public class CustomerServiceImpl implements CustomerService{
+	
+	@Autowired
+	CustomerDao customerDao;
+	
+	@Autowired
+	LoginDao loginDao;
+	
+	@Autowired
+	IssueDao issueDao;
+	
+	@Override
+	public String login(Login login) {
+		if(loginDao.findById(login.getUserName()).get().isActive()==true) {
+			return "Already Login";
+		}
+		if(customerDao.findById(login.getUserName()) == null) {
+			return "Customer Not Found. Plzzz Register";
+		}
+		if(!customerDao.findById(login.getUserName()).get().getCustomerPassword().equals(login.getPassword())) {
+			return "Invalid Id or Password";
+		}
+		
+		Login login2=loginDao.findById(login.getUserName()).get();
+		login2.setActive(true);
+		loginDao.save(login2);
+		
+		return "Login successfully";
+	}
+
+	@Override
+	public String registerCustomer(Customer customer) {
+		customerDao.save(customer);
+		
+		Login login=new Login();
+		login.setUserName(customer.getCustomerId());
+		login.setPassword(customer.getCustomerPassword());
+		login.setType(UserType.CUSTOMER);
+		login.setActive(false);
+		loginDao.save(login);
+		
+		return "Customer Added";
+	}
+
+	@Override
+	public Issue viewIssueById(int issueId) {
+		Issue issue=issueDao.findById(issueId).get();
+		return issue;
+	}
+
+	@Override
+	public Issue reopenIssue(int issueId) {
+		Issue issue=issueDao.findById(issueId).get();
+		issue.setIssueStatus("Open");
+		return issueDao.save(issue);
+	}
+
+	@Override
+	public List<Issue> viewAllIssues() {
+		return issueDao.findAll();
+	}
+
+	@Override
+	public String changePassword(Login login) {
+		Customer customer=customerDao.findById(login.getUserName()).get();
+		if(customer==null) {
+			return "Customer Not Found";
+		}
+		customer.setCustomerPassword(login.getPassword());
+		customerDao.save(customer);
+		
+		Login login2=loginDao.findById(login.getUserName()).get();
+		login2.setPassword(login.getPassword());
+		loginDao.save(login2);
+		
+		return "Password Changed";
+	}
+
+	@Override
+	public String forgotPassword(int customerId) {
+		Customer customer=customerDao.findById(customerId).get();
+		if(customer==null) {
+			return "Customer Not Found";
+		}
+		return "Password Reset";
+	}
+
+	@Override
+	public Customer emailPassword(int customerId) {
+		Customer customer=customerDao.findById(customerId).get();
+		if(customer==null) {
+			return null;
+		}
+		return customer;
+	}
+
+
+}
