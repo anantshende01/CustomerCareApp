@@ -12,7 +12,7 @@ public interface CustomerService {
 	public String registerCustomer(Customer customer);
 	public Issue viewIssueById(int issueId);
 	public Issue reopenIssue(int issueId);
-	public List<Issue> viewAllIssues();
+	public List<Issue> viewAllIssues(int customerId);
 	public String changePassword(Login login);
 	public String forgotPassword(int customerId, String newPassword);
 	public String logout(Login login);

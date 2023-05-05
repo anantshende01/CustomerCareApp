@@ -24,13 +24,25 @@ public class Issue {
 	
 	@Column(name = "issuestatus")
 	private String issueStatus;
-
+	
+	@Column(name = "operator_name")
+	private String operatorName;
+	
+	
 	public int getIssueId() {
 		return issueId;
 	}
-
+	
 	public void setIssueId(int issueId) {
 		this.issueId = issueId;
+	}
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 
 	public String getIssueType() {
@@ -48,15 +60,54 @@ public class Issue {
 	public void setIssueDescription(String issueDescription) {
 		this.issueDescription = issueDescription;
 	}
+	
+	
+	public Issue(int issueId, int customerId, String issueType, String issueDescription, String issueStatus,
+			String operatorName) {
+		super();
+		this.issueId = issueId;
+		this.customerId = customerId;
+		this.issueType = issueType;
+		this.issueDescription = issueDescription;
+		this.issueStatus = issueStatus;
+		this.operatorName = operatorName;
+	}
 
 	public String getIssueStatus() {
 		return issueStatus;
 	}
 
+
+
+
+
+
 	public void setIssueStatus(String issueStatus) {
 		this.issueStatus = issueStatus;
 	}
-	
-	
-	
+
+
+
+
+
+
+	public String getOperatorName() {
+		return operatorName;
+	}
+
+
+
+
+
+
+	public void setOperatorName(String operatorName) {
+		this.operatorName = operatorName;
+	}
+
+
+
+
+
+
+	public Issue() {}	
 }

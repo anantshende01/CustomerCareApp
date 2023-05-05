@@ -28,7 +28,7 @@ public class AdminController {
 		return adminService.addDepartment(d);
 	}
 	
-	@DeleteMapping("/deleteDepartment/{id}")
+	@DeleteMapping("/removeDepartment/{id}")
 	public String removeDepartment(@PathVariable int id) {
 		return adminService.removeDepartment(id);
 	}

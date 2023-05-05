@@ -7,9 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.ibm.customerCare.dao.AdminDao;
 import com.ibm.customerCare.dao.DepartmentDao;
+import com.ibm.customerCare.dao.LoginDao;
 import com.ibm.customerCare.dao.OperatorDao;
 import com.ibm.customerCare.model.Department;
 import com.ibm.customerCare.model.Operator;
+import com.ibm.customerCare.model.UserType;
+import com.ibm.customerCare.model.Login;
 
 import jakarta.transaction.Transactional;
 
@@ -17,10 +20,14 @@ import jakarta.transaction.Transactional;
 @Transactional
 public class AdminServiceImpl implements AdminService{
 	
+	
 	AdminDao adminDao;
 	@Autowired
 	DepartmentDao deptDao;
+	@Autowired
 	OperatorDao operatorDao;
+	@Autowired
+	LoginDao loginDao;
 
 	@Override
 	public String addDepartment(Department d) {
@@ -64,6 +71,13 @@ public class AdminServiceImpl implements AdminService{
 		if(exists) return "Operator already exists";
 		
 		operatorDao.save(o);
+		Login login  = new Login();
+		login.setUserName(o.getOperatorId());
+		login.setPassword(o.getOperatorPassword());
+		login.setType(UserType.OPERATOR);
+		login.setActive(false);
+		loginDao.save(login);
+		
 		return "Operator Created";
 	}
 

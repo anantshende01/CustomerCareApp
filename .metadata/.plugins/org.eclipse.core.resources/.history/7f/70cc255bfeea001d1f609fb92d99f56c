@@ -1,0 +1,46 @@
+package com.ibm.customerCare.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Table(name = "operator")
+@AllArgsConstructor
+@Getter
+@Setter
+public class Operator {
+	
+	@Id
+	@Column(name = "id")
+	private int operatorId;
+	
+	@Column(name="operator_password")
+	private String operatorPassword;
+	
+	@Column(name = "firstname")
+	private String operatorFirstName;
+	
+	
+	@Column(name = "lastname")
+	private String operatorLastName;
+	
+	@Column(name = "email")
+	private String operatorEmail;
+	
+	@Column(name = "mobile")
+	private long operatorMobile;
+	
+	@Column(name = "city")
+	private String operatorCity;
+	
+//	private Department department;
+
+
+	
+	
+}

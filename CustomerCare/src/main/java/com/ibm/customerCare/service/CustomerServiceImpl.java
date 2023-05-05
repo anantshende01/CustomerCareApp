@@ -1,12 +1,13 @@
 package com.ibm.customerCare.service;
 
-import java.util.List;
+import java.util.*;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ibm.customerCare.dao.CustomerDao;
+import com.ibm.customerCare.dao.IssueDao;
 import com.ibm.customerCare.dao.LoginDao;
 import com.ibm.customerCare.model.Customer;
 import com.ibm.customerCare.model.Issue;
@@ -24,6 +25,9 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	@Autowired
 	LoginDao loginDao;
+	
+	@Autowired
+	IssueDao issueDao;
 	
 
 	@Override
@@ -68,20 +72,32 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public Issue viewIssueById(int issueId) {
-		// TODO Auto-generated method stub
-		return null;
+		Issue issue= issueDao.findById(issueId).get();
+		return issue;
 	}
 
 	@Override
 	public Issue reopenIssue(int issueId) {
-		// TODO Auto-generated method stub
-		return null;
+		Issue issue= issueDao.findById(issueId).get();
+		
+		issue.setIssueStatus("Pending");
+		issueDao.save(issue);
+		return issue;
 	}
 
 	@Override
-	public List<Issue> viewAllIssues() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Issue> viewAllIssues(int customerId) {
+		List<Issue> issues = issueDao.findAll();
+		
+		List<Issue> newList = new ArrayList<Issue>();
+		
+		for(int i = 0 ; i < issues.size(); i++) {
+			if(issues.get(i).getCustomerId() == customerId ) {
+				newList.add(issues.get(i));
+			}
+			
+		}
+		return newList;
 	}
 
 	@Override
