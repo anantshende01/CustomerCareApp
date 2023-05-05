@@ -4,6 +4,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "operator")
@@ -13,8 +16,12 @@ public class Operator {
 	@Column(name = "id")
 	private int operatorId;
 	
+	@Column(name="operator_password")
+	private String operatorPassword;
+	
 	@Column(name = "firstname")
 	private String operatorFirstName;
+	
 	
 	@Column(name = "lastname")
 	private String operatorLastName;
@@ -23,12 +30,10 @@ public class Operator {
 	private String operatorEmail;
 	
 	@Column(name = "mobile")
-	private String operatorMobile;
+	private long operatorMobile;
 	
 	@Column(name = "city")
 	private String operatorCity;
-	
-//	private Department department;
 
 	public int getOperatorId() {
 		return operatorId;
@@ -36,6 +41,14 @@ public class Operator {
 
 	public void setOperatorId(int operatorId) {
 		this.operatorId = operatorId;
+	}
+
+	public String getOperatorPassword() {
+		return operatorPassword;
+	}
+
+	public void setOperatorPassword(String operatorPassword) {
+		this.operatorPassword = operatorPassword;
 	}
 
 	public String getOperatorFirstName() {
@@ -62,11 +75,11 @@ public class Operator {
 		this.operatorEmail = operatorEmail;
 	}
 
-	public String getOperatorMobile() {
+	public long getOperatorMobile() {
 		return operatorMobile;
 	}
 
-	public void setOperatorMobile(String operatorMobile) {
+	public void setOperatorMobile(long operatorMobile) {
 		this.operatorMobile = operatorMobile;
 	}
 
@@ -77,11 +90,23 @@ public class Operator {
 	public void setOperatorCity(String operatorCity) {
 		this.operatorCity = operatorCity;
 	}
+
+	public Operator(int operatorId, String operatorPassword, String operatorFirstName, String operatorLastName,
+			String operatorEmail, long operatorMobile, String operatorCity) {
+		super();
+		this.operatorId = operatorId;
+		this.operatorPassword = operatorPassword;
+		this.operatorFirstName = operatorFirstName;
+		this.operatorLastName = operatorLastName;
+		this.operatorEmail = operatorEmail;
+		this.operatorMobile = operatorMobile;
+		this.operatorCity = operatorCity;
+	}
 	
+//	private Department department;
 
 	
-	
-	
+	public Operator() {}
 	
 	
 }

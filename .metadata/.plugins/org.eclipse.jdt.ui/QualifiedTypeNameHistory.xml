@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="com.ibm.customerCare.repo.CustomerDao"/>
-    <fullyQualifiedTypeName name="jakarta.persistence.Column"/>
     <fullyQualifiedTypeName name="com.ibm.customerCare.repo.LoginDao"/>
-    <fullyQualifiedTypeName name="com.ibm.customerCare.model.UserType"/>
     <fullyQualifiedTypeName name="com.ibm.customerCare.repo.IssueDao"/>
-    <fullyQualifiedTypeName name="com.ibm.customerCare.model.Issue"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
     <fullyQualifiedTypeName name="com.ibm.customerCare.model.Login"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="com.ibm.customerCare.model.Customer"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
@@ -18,14 +13,25 @@
     <fullyQualifiedTypeName name="jakarta.persistence.EntityManager"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtension"/>
     <fullyQualifiedTypeName name="com.ibm.customerCare.dao.DepartmentDao"/>
-    <fullyQualifiedTypeName name="com.ibm.customerCare.dao.OperatorDao"/>
     <fullyQualifiedTypeName name="com.ibm.customerCare.dao.AdminDao"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="com.ibm.customerCare.model.Operator"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.ibm.customerCare.service.AdminService"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
     <fullyQualifiedTypeName name="com.ibm.customerCare.model.Department"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Column"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="com.ibm.customerCare.dao.LoginDao"/>
+    <fullyQualifiedTypeName name="com.ibm.customerCare.model.UserType"/>
+    <fullyQualifiedTypeName name="com.ibm.customerCare.dao.IssueDao"/>
+    <fullyQualifiedTypeName name="org.hibernate.type.IdentifierBagType"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="com.ibm.customerCare.model.Issue"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="com.ibm.customerCare.dao.OperatorDao"/>
+    <fullyQualifiedTypeName name="com.ibm.customerCare.model.Operator"/>
 </qualifiedTypeNameHistroy>

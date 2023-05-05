@@ -1,0 +1,152 @@
+package com.ibm.customerCare.service;
+
+import java.util.List;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ibm.customerCare.dao.CustomerDao;
+import com.ibm.customerCare.dao.IssueDao;
+import com.ibm.customerCare.dao.LoginDao;
+import com.ibm.customerCare.model.Customer;
+import com.ibm.customerCare.model.Issue;
+import com.ibm.customerCare.model.Login;
+import com.ibm.customerCare.model.UserType;
+
+import jakarta.transaction.Transactional;
+
+@Service
+@Transactional
+public class CustomerServiceImpl implements CustomerService{
+	
+	@Autowired
+	CustomerDao customerDao;
+	
+	@Autowired
+	LoginDao loginDao;
+	
+	@Autowired
+	IssueDao issueDao;
+	
+
+	@Override
+	public String login(Login login) {
+		boolean exists=loginDao.existsById(login.getUserName());
+		if(!exists) {
+			return "Customer Not Found. Plzzz Register";
+		}
+		if(!customerDao.findById(login.getUserName()).get().getCustomerPassword().equals(login.getPassword())) {
+			return "Invalid Id or Password";
+		}
+		
+		if(loginDao.findById(login.getUserName()).get().isActive()==true) {
+			return "Already Login";
+		}
+		
+		Login login2=loginDao.findById(login.getUserName()).get();
+		login2.setActive(true);
+		loginDao.save(login2);
+		
+		return "Login successfully";
+	}
+
+	@Override
+	public String registerCustomer(Customer customer) {
+		
+		boolean exists=customerDao.existsById(customer.getCustomerId());
+		if(exists) {
+			return "Customer Already have Same Id Choose Another Id";
+		}
+		customerDao.save(customer);
+		
+		Login login=new Login();
+		login.setUserName(customer.getCustomerId());
+		login.setPassword(customer.getCustomerPassword());
+		login.setType(UserType.CUSTOMER);
+		login.setActive(false);
+		loginDao.save(login);
+		
+		return "Added";
+	}
+
+	@Override
+	public Issue viewIssueById(int issueId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Issue reopenIssue(int issueId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Issue> viewAllIssues() {
+		List<Issue> issues = issueDao.findAll();
+		return issues;
+	}
+
+	@Override
+	public String changePassword(Login login) {
+		boolean exists=customerDao.existsById(login.getUserName());
+		if(!exists) {
+			return "Customer Not Found";
+		}
+		
+		Login login2=loginDao.findById(login.getUserName()).get();
+		boolean loginStatus=login2.isActive();
+		if(loginStatus==false) {
+			return "PLease Login First";
+		}
+		Customer customer=customerDao.findById(login.getUserName()).get();
+		customer.setCustomerPassword(login.getPassword());
+		customerDao.save(customer);
+		
+		Login login3=loginDao.findById(login.getUserName()).get();
+		login3.setPassword(login.getPassword());
+		loginDao.save(login3);
+		
+		return "Password Changed";
+	}
+
+
+
+
+	@Override
+	public String logout(Login login) {
+		boolean exists=loginDao.existsById(login.getUserName());
+		if(!exists) {
+			return "Customer Not Found. Plzzz Register";
+		}
+		
+		Login login2=loginDao.findById(login.getUserName()).get();
+		login2.setActive(false);
+		loginDao.save(login2);
+		
+		return "Logout successfully";
+	}
+
+	@Override
+	public String forgotPassword(int customerId, String newPassword) {
+		
+		boolean exists=loginDao.existsById(customerId);
+		if(!exists) {
+			return "Customer Not Found. Plzzz Register";
+		}
+		
+		Customer customer=customerDao.findById(customerId).get();
+		
+		customer.setCustomerPassword(newPassword);
+		customerDao.save(customer);
+		
+		Login login=loginDao.findById(customerId).get();
+		login.setPassword(newPassword);
+		loginDao.save(login);
+		
+		return "Password Changed";
+		
+	}
+
+}

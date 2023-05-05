@@ -1,0 +1,130 @@
+package com.ibm.customerCare.service;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+import org.springframework.mail.SimpleMailMessage;
+import com.ibm.customerCare.dao.CustomerDao;
+import com.ibm.customerCare.dao.IssueDao;
+import com.ibm.customerCare.dao.LoginDao;
+import com.ibm.customerCare.dao.OperatorDao;
+import com.ibm.customerCare.model.Customer;
+import com.ibm.customerCare.model.Issue;
+import com.ibm.customerCare.model.Login;
+import com.ibm.customerCare.model.UserType;
+
+import jakarta.transaction.Transactional;
+
+@Service
+@Transactional
+public class OperatorServiceImpl implements OperatorService{
+
+	@Autowired
+	OperatorDao operatordao;
+	@Autowired
+	CustomerDao customerdao;
+	@Autowired
+	IssueDao issuedao;
+	@Autowired
+	LoginDao logindao;
+
+	private JavaMailSender mailSender;
+
+	@Override
+	public String login(Login login) {
+		boolean exists=logindao.existsById(login.getUserName());
+		if(!exists) {
+			return "Operator Not Found. Plzzz Register";
+		}
+		if(!operatordao.findById(login.getUserName()).get().getOperatorPassword().equals(login.getPassword())) {
+			return "Invalid Id or Password";
+		}
+		
+		if(logindao.findById(login.getUserName()).get().isActive()==true) {
+			return "Already Login";
+		}	
+		
+		Login login2=logindao.findById(login.getUserName()).get();
+		login2.setActive(true);
+		logindao.save(login2);
+		
+		return "Login successfully";
+	}
+
+	@Override
+	public String addCustomerIssue(Issue issue, int operatorId) {
+		issuedao.save(issue);
+		return "Issue Created";
+	}
+
+	@Override
+	public String sendIntimationMailToCustomer(int issueId, int customerId) {
+		Customer customerModified = customerdao.findById(customerId).get();
+		SimpleMailMessage message = new SimpleMailMessage();
+		String customerEmail = customerModified.getCustomerEmail();
+		message.setTo(customerEmail);
+        message.setSubject("Intimatioin Email");
+        message.setText("The issue that you have reported isbeing solved by the develpoers");
+
+        mailSender.send(message);
+		return null; 
+	}
+
+	@Override
+	public String modifytomerIssue(Issue issue) {
+		issuedao.save(issue);
+		return "Issue Updated";
+	}
+
+	@Override
+	public String sendModificationMailToCustomer(int issueId, int customerId) {
+		Customer customerModified = customerdao.findById(customerId).get();
+		SimpleMailMessage message = new SimpleMailMessage();
+		String customerEmail = customerModified.getCustomerEmail();
+		message.setTo(customerEmail);
+        message.setSubject("Modificaton Email");
+        message.setText("Your Account has been successfully modified");
+
+        mailSender.send(message);
+		return null; 
+	}
+
+	@Override
+	public String closeCustomerIssue(int issueId) {
+		Issue issue = issuedao.findById(issueId).get();
+		issue.setIssueStatus("Closed");
+		issuedao.save(issue);
+		return "Department Deleted ";
+	}
+
+	@Override
+	public Customer findCustomerById(int customerId) {
+		Customer customer = customerdao.findById(customerId).get();
+		return customer;
+	}
+
+	@Override
+	public Customer findCustomerByName( String name) {
+	    Customer[] customers = null;
+		for (Customer customer : customers) {
+	        if (customer.getCustomerFirstName().equals(name)) {
+	            return (Customer) customer;
+	        }
+	    }
+	    return null;
+	}
+
+	@Override
+	public Customer findCustomerByEmail(String email) {
+		Customer customer = customerdao.findByEmail(email);
+		return customer;
+	}
+
+	@Override
+	public Boolean lockCustomer(int customerId) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+}

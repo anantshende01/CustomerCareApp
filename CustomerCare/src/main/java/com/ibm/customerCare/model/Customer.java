@@ -19,7 +19,7 @@ public class Customer {
 	private String customerLastName;
 	
 	@Column(name = "email")
-	private String customerEmail;
+	private String email;
 	
 	@Column(name = "mobile")
 	private String customerMobile;
@@ -55,11 +55,11 @@ public class Customer {
 	}
 
 	public String getCustomerEmail() {
-		return customerEmail;
+		return email;
 	}
 
 	public void setCustomerEmail(String customerEmail) {
-		this.customerEmail = customerEmail;
+		this.email = customerEmail;
 	}
 
 	public String getCustomerMobile() {
